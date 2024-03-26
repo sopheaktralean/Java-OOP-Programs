@@ -1,0 +1,79 @@
+//Algorithm: Basic Calculator: Addition and Subtraction
+//The purpose of this program is to offer two calculator operation: addition and subtraction.
+
+//Importing a scanner package
+import java.util.Scanner;
+
+public class A3_Q1 {
+    public static void main(String[] args){
+
+        //Initializing a scanner object
+        Scanner scanner = new Scanner(System.in);
+
+        //Displaying a welcome message to the user
+        System.out.println("Welcome to this calculator, offering Addition and Subtraction.");
+
+        while (true) {
+
+            //Prompting the user to select the operation for addition or subtraction
+            System.out.print("Please select 1 for Addition or 2 for Subtraction: ");
+            //Declaring an integer to store and read the user's input
+            int selection = scanner.nextInt();
+
+            //Executing this loop if the user select 1 or 2
+            if (selection == 1 || selection == 2 ){
+
+                //Prompting the user's input for the operation
+                System.out.print("Please input your numbers: ");
+                //Declaring an integer to store and read user's input
+                int x = scanner.nextInt();
+                //Declaring a float for the total of the calculation
+                float total = 0;
+
+                //Looping through the user's input from index 0
+                for (int i = 0; i < x; i++) {
+                    float y = scanner.nextFloat();
+
+                    //Executing this loop if the index i equals to 0
+                    if (i == 0) {
+                        //Assigning the total of the calculation to y if the index is 0
+                        total = y;
+                    }
+
+                    //Executing this loop if the index i does not equal to 0
+                    else{
+                        //Operating the addition if user selects 1 and the subtraction if user selects 2
+                        total += (selection == 1) ? y : -y;
+                    }
+                }
+                //Displaying the result to the user with two decimals digit
+                System.out.println("The result of your " + (selection == 1 ? "addition" : "subtraction") + " is: " + String.format("%.2f", total));
+            }
+
+            //Executing this loop if user selects anything other than 1 or 2
+            else {
+                //Displaying a message for unsupported operation
+                System.out.println("Operation not supported.");
+            }
+
+            //Consuming the newline characters
+            scanner.nextLine();
+
+            //Prompting the user if they want to repeat the operation again
+            System.out.print("Do you want to perform another operation? y/yes: ");
+            //Declaring a string to store and read the user's input
+            String answer = scanner.nextLine();
+
+            //Exiting the loop if the user answers anything other than "yes" or "y"
+            if (!answer.equalsIgnoreCase("yes") && !answer.equalsIgnoreCase("y")){
+                break;
+            }
+        }
+
+        //Displaying a closing message to the user
+        System.out.print("Goodbye!");
+
+        //Closing the scanner object
+        scanner.close();
+    }
+}

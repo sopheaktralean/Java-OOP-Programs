@@ -1,0 +1,29 @@
+/*Algorithm 1: Simple Cipher Program*/
+
+public class SimpleCipherProgram {
+
+    public static void main(String[] args){
+
+        //displaying the welcome message to the user
+        System.out.println("""
+                Project-S Access System: 6-Piece Puzzle Authentication Challenge:
+                +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                """);
+
+        //implementing the algorithm
+        int a = (20/14)+(20%14);
+        int b = (9/3)+(9%3);
+        int c = (45/20)+(45%20);
+
+        //displaying the expected output
+        String message = String.format("""
+                7 @ 5   8 @ 3   4 @ 2   20 @ 14   9 @ 3   45 @ 20
+                  |       |       |        |        |        |
+                  3       4       2        %d        %d        %d
+                """, a, b, c);
+        System.out.println(message);
+
+        //displaying the closing message
+        System.out.println("At Project-S, we employ multi-factor authentication because one password is never enough.");
+    }
+}

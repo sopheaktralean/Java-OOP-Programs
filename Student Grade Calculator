@@ -1,0 +1,71 @@
+//Algorithm: Grade Calculator
+import java.util.Scanner;
+
+public class GradeCalculator {
+    public static void main(String[] args){
+
+        Scanner information = new Scanner(System.in);
+
+            //Initializing the variables
+            double score; int number = 0; char grade;
+
+            //Displaying the welcome message
+            System.out.println("_______****_______****_______****_______****_______****_____");
+            System.out.println("Welcome to Grade Calculator");
+            System.out.println("_______****_______****_______****_______****_______****_____");
+
+            //Prompting user's for input
+            System.out.print("Enter the student's score (out of 100): ");
+            score = information.nextDouble();
+
+            //Implementing the algorithms
+            if(score >= 0 && score <= 100){
+                grade = switch ((int) score / 10) {
+                    case 10, 9 -> 'A';
+                    case 8 -> 'B';
+                    case 7 -> 'C';
+                    case 6 -> 'D';
+                    default -> 'F';
+                };
+
+                //Displaying the output
+                System.out.printf("The student's grade is: %c", grade);
+            } else {
+                number++;
+                if (score < 0){
+                    System.out.println("The score has to be zero or above. Please try again.");
+                } else if(score > 100){
+                    System.out.println("The score has to be below 100. Please try again");
+                }
+
+                //Displaying the second attempt
+                score = information.nextDouble();
+
+                //Implementing the algorithms
+                if(score >= 0 && score <= 100){
+                    grade = switch ((int) score / 10) {
+                        case 10, 9 -> 'A';
+                        case 8 -> 'B';
+                        case 7 -> 'C';
+                        case 6 -> 'D';
+                        default -> 'F';
+                    };
+
+                    //Displaying the output
+                    System.out.printf("The student's grade is: %c", grade);
+                } else {
+                    number++;
+                    if(number == 2){
+                        System.out.println("It is still an invalid input. Bye!");
+                        System.exit(1);
+                    }
+                    if (score < 0){
+                        System.out.println("The score has to be zero or above. Please try again.");
+                    } else if(score > 100){
+                        System.out.println("The score has to be below 100. Please try again");
+                    }
+                }
+            }
+        information.close();
+    }
+}

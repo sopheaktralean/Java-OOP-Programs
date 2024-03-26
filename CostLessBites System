@@ -1,0 +1,901 @@
+/*Sales Class*/
+
+/*Algorithm: This code is to keep track of the number of sales sold on-demand of each meal categories (junior, teen, medium, big, and family) and the total amount of sales.
+In this class Default Constructor, Constructor, Accessor, Mutator, addSales(), SalesTotal(), toString(), and equals(), are the methods that will be implemented.*/
+
+public class Sales {
+
+    /*Attributes*/
+    /*Initializing a static attribute for the junior's price which is $5*/
+    private static final int juniorPrice = 5;
+    /*Initializing a static attribute for the teen's price which is $10*/
+    private static final int teenPrice = 10;
+    /*Initializing a static attribute for the medium's price which is $12*/
+    private static final int mediumPrice = 12;
+    /*Initializing a static attribute for the big's price which is $15*/
+    private static final int bigPrice = 15;
+    /*Initializing a static attribute for the family's price which is $20*/
+    private static final int familyPrice = 20;
+    /*Declaring an attribute for the unit of the junior's sales*/
+    private int juniorUnit;
+    /*Declaring an attribute for the unit of the teen's sales*/
+    private int teenUnit;
+    /*Declaring an attribute for the unit of the medium's sales*/
+    private int mediumUnit;
+    /*Declaring an attribute for the unit of the big's sales*/
+    private int bigUnit;
+    /*Declaring an attribute for the unit of the family's sales*/
+    private int familyUnit;
+
+    /*Constructor*/
+    /*Implementing a default constructor for the class Sales with default values*/
+    public Sales() {
+    }
+
+    /*Implementing constructors for the unit of the junior's sales, the unit of the teen's sales,
+    the unit of the medium's sales, the unit of the big's sales, and the unit of family's sales*/
+    public Sales(int juniorUnit, int teenUnit, int mediumUnit, int bigUnit, int familyUnit) {
+        this.juniorUnit = juniorUnit;
+        this.teenUnit = teenUnit;
+        this.mediumUnit = mediumUnit;
+        this.bigUnit = bigUnit;
+        this.familyUnit = familyUnit;
+    }
+
+    /*Accessor Methods*/
+    /*Getter method for juniorUnit*/
+    public int getJuniorUnit() {
+        return juniorUnit;
+    }
+
+    /*Getter method for teenUnit*/
+    public int getTeenUnit() {
+        return teenUnit;
+    }
+
+    /*Getter method for mediumUnit*/
+    public int getMediumUnit() {
+        return mediumUnit;
+    }
+
+    /*Getter method for bigUnit*/
+    public int getBigUnit() {
+        return bigUnit;
+    }
+
+    /*Getter method for familyUnit*/
+    public int getFamilyUnit() {
+        return familyUnit;
+    }
+
+    /*Mutator methods*/
+    /*Setter method for juniorUnit*/
+    public void setJuniorUnit(int juniorUnit) {
+        this.juniorUnit = juniorUnit;
+    }
+
+    /*Setter method for teenUnit*/
+    public void setTeenUnit(int teenUnit) {
+        this.teenUnit = teenUnit;
+    }
+
+    /*Setter method for mediumUnit*/
+    public void setMediumUnit(int mediumUnit) {
+        this.mediumUnit = mediumUnit;
+    }
+
+    /*Setter method for bigUnit*/
+    public void setBigUnit(int bigUnit) {
+        this.bigUnit = bigUnit;
+    }
+
+    /*Setter method for familyUnit*/
+    public void setFamilyUnit(int familyUnit) {
+        this.familyUnit = familyUnit;
+    }
+
+    /*Implementing a method called "addSales()" with 5 parameters which are the unit of the junior's sales,
+    the unit of the teen's sale, the unit of the medium's sales, the unit of the big's sales, and the unit of the family's sales*/
+    public void addSales(int juniorUnit, int teenUnit, int mediumUnit, int bigUnit, int familyUnit) {
+        this.juniorUnit += juniorUnit;
+        this.teenUnit += teenUnit;
+        this.mediumUnit += mediumUnit;
+        this.bigUnit += bigUnit;
+        this.familyUnit += familyUnit;
+    }
+
+    /*Implementing a method called "SalesTotal()" which will return the total value of sales by multiplying
+    the unit of each meal categories' sales with their price, then adding the sales together*/
+    public int SalesTotal() {
+        int juniorSales = this.juniorUnit * juniorPrice;
+        int teenSales = this.teenUnit * teenPrice;
+        int mediumSales = this.mediumUnit * mediumPrice;
+        int bigSales = this.bigUnit * bigPrice;
+        int familySales = this.familyUnit * familyPrice;
+        return juniorSales + teenSales + mediumSales + bigSales + familySales;
+    }
+
+    /*Implementing a method called "toString()" which return the unit of junior's sales with its price, the unit of teen's sales with it prices,
+    the unit of medium's sales with its price, the unit of big's sales with its price, and the unit of family's sales with its price*/
+    @Override
+    public String toString() {
+        return String.format("%d x $%d + %d x $%d + %d x $%d + %d x $%d + %d x $%d ", juniorUnit, juniorPrice, teenUnit,
+                teenPrice, mediumUnit, mediumPrice, bigUnit, bigPrice, familyUnit, familyPrice);
+    }
+
+    /*Implementing a method called "equals()" which return true when the unit of each meal categories of two objects of type Sales have
+    the same breakdown*/
+    public boolean equals(Sales otherSales) {
+        return juniorUnit == otherSales.juniorUnit &&
+                teenUnit == otherSales.teenUnit &&
+                mediumUnit == otherSales.mediumUnit &&
+                bigUnit == otherSales.bigUnit &&
+                familyUnit == otherSales.familyUnit;
+    }
+}
+
+/*PrePaiCard Class*/
+
+/*Algorithm: This code is keep track of the prepaid card including its type, the id of the card holder, the expiry day, and the expiry month.
+In this class Constructor, Default Constructor, Copy Constructor, Accessor, Mutator, toString(), and equals() are the methods that will be implemented */
+
+public class PrePaiCard {
+
+    /*Attributes*/
+    /*Declaring a string attribute for the card type*/
+    private String cardType;
+    /*Declaring a string attribute for the id card*/
+    private String idCard;
+    /*Declaring an integer attribute for the expiry day*/
+    private int expiryDay;
+    /*Declaring an integer attribute for the expiry month*/
+    private int expiryMonth;
+
+    /*Constructor*/
+    /*Implementing a default contructor for PrePaiCard() with default value*/
+    public PrePaiCard(){
+    }
+    /*Implementing a constructor for PrePaiCard with 4 parameters such as the card type, the id card, the expiry day, and the expiry month*/
+    public PrePaiCard(String cardType, String idCard, int expiryDay, int expiryMonth) {
+        this.cardType = cardType;
+        this.idCard = idCard;
+        /*Calling setExpiryDay to validate and set the expiry day*/
+        setexpiryDay(expiryDay);
+        /*Calling setExpiryMonth to validate and set the expiry month*/
+        setexpiryMonth(expiryMonth);
+    }
+    /*Implementing a copy constructor for PrePaidCard object with the same attributes as the provided PrePaiCard*/
+    public PrePaiCard(PrePaiCard copy){
+        this.cardType = copy.cardType;
+        this.idCard = copy.idCard;
+        this.expiryDay = copy.expiryDay;
+        this.expiryMonth = copy.expiryMonth;
+    }
+
+    /*Accessor methods*/
+    /*Getter method for cardType*/
+    public String getCardType() {
+        return cardType;
+    }
+    /*Getter method for idCard*/
+    public String getIdCard() {
+       return idCard;
+    }
+    /*Getter method for expiryDay*/
+    public int getExpiryDay() {
+       return expiryDay;
+    }
+    /*Getter method for expiryMonth*/
+    public int getExpiryMonth() {
+        return expiryMonth;
+    }
+
+    /*Mutator methods*/
+    /*Setter method for expiryDay*/
+    public static void setExpiryDay(int newExpiryDay) {
+    }
+    /*Setter method for expiryMonth*/
+    public static void setExpiryMonth(int newExpiryMonth) {
+    }
+
+    /*Implementing a method which set the day to 0 if it is not between 1 and 31*/
+    public void setexpiryDay(int newexpiryDay) {
+        if (newexpiryDay >= 1 && newexpiryDay <= 31) {
+            this.expiryDay = newexpiryDay;
+        }
+        else {
+            this.expiryDay = 0;
+        }
+    }
+
+    /*Implementing a method which set the month to 0 if it is not between 1 and 12*/
+    public void setexpiryMonth(int newexpiryMonth) {
+        if (newexpiryMonth >= 1 && newexpiryMonth <= 12) {
+            this.expiryMonth = newexpiryMonth;
+        }
+        else {
+            this.expiryMonth = 0;
+        }
+    }
+
+    /*Implementing an override toString() methods to format the PrePaid card information as a string*/
+    @Override
+    public String toString(){
+        return String.format("%s - %s - %02d/%02d.", this.cardType, this.idCard, this.expiryDay, this.expiryMonth);
+    }
+
+    /*Implementing an equals() method which returns true if the prepaid card object are equals in term of their
+    card type, their id card, their expiry day, and their ecpiry month and return false otherwise*/
+    public boolean equals(PrePaiCard other){
+        return this.cardType.compareTo(other.cardType) == 0 &&
+                this.idCard.compareTo(other.idCard) == 0 &&
+                this.expiryDay == other.expiryDay &&
+                this.expiryMonth == other.expiryMonth;
+    }
+}
+
+/*PoS class*/
+
+/*Algorithm: The code is to add the Sales and PrePaiCard into an object of type Sales and an array of objects of type PrePaiCard.
+In this class Default constructor, Constructor, equalsSalesTotal(), equalsSaleUnits(), getTotalSales(), numPrepaicard(), addNewCard(), removeCard(),
+updatedPrePaiCardExpiry(), addMealSales(), equals(), toString(), and breakdownSales() are the methods that will be implemented*/
+
+public class PoS {
+
+    /*Attributes*/
+    /*Declaring a sales attribute for sales*/
+    private Sales sales;
+    /*Declaring an array attribute for cardArray*/
+    private PrePaiCard[] cardArray;
+    /*Declaring an integer attribute for maxSize*/
+    private static final int maxSize = 10;
+
+    /*Constructor*/
+    /*Implementing a constructor with 2 parameters such as sales and card*/
+    public PoS(Sales sales, PrePaiCard[] cardArray){
+        this.sales = sales;
+        setCardArray(cardArray);
+    }
+
+    /*Accessor methods*/
+    /*Getter method for cardArray*/
+    public PrePaiCard[] getCardArray() {
+        return this.cardArray;
+    }
+    /*Getter method for sales*/
+    public Sales getSales() {
+        return sales;
+    }
+
+    /*Mutator methods*/
+    /*Setter method for cardArray*/
+    public void setCardArray(PrePaiCard[] cardArray) {
+        for (PrePaiCard card : cardArray) {
+            if (card != null) {
+                this.cardArray = cardArray;
+                return;
+            }
+        }
+        this.cardArray = null;
+    }
+    /*Setter method for sales*/
+    public void setSales(Sales sales) {
+        this.sales = sales;
+    }
+
+    /*Implementing a method called "equalsSalesTotal()" to compare the total amount of sales of two PoS objects
+    and return true if they both are equal and fasle otherwise*/
+    public boolean equalsSalesTotal(PoS others){
+        return this.sales.SalesTotal() == others.sales.SalesTotal();
+    }
+
+    /*Implementing a method called "equalsSaleUnits()" to compare the unit of sales categories of two PoS objects
+    and return true if they both are equals and false otherwise*/
+    public boolean equalsSaleUnits(PoS others){
+        return this.sales.equals(others.sales);
+    }
+
+    /*Implementing a getter method for the total sales*/
+    public int getTotalSales(){
+        return sales.SalesTotal();
+    }
+
+    /*Implementing the numPrepaicard() method to count the number of prepaid card in cardArray which will 0 if cardArray is null or there is no card in cardArray*/
+    public int numPrepaicard(){
+        int count = 0;
+        if(cardArray == null){
+            return count;
+        }
+        for(PrePaiCard card : cardArray){
+            if (card != null){
+                count++;
+            }
+            else{
+                break;
+            }
+        }
+        return count;
+    }
+
+    /*Implementing an addNewCard() method to add a new PrePaid card into cardArray*/
+    public void addNewCard(PrePaiCard newCard) {
+        /*Executing this operation if cardArray is null*/
+        if (cardArray == null){
+            /*Assigning cards with the size of maxSize*/
+            cardArray = new PrePaiCard[maxSize];
+            /*Assigning newCard as the first element of cards*/
+            cardArray[0] = newCard;
+        }
+        /*Executing this operation if cardArray is not null*/
+        else{
+            /*Initializing an integer called "size" to be the length of cardArray*/
+            int size = cardArray.length;
+            /*Executing this operation if the last element of cardArray is not null*/
+            if(cardArray[size - 1] != null){
+                /*Initializing an integer called "newSize" to increase the length of cardArray by 1*/
+                int newSize = size + 1;
+                /*Initializing a new array called "newcardArray" with the same size as cardArray*/
+                PrePaiCard[] newcardArray = new PrePaiCard[newSize];
+                /*Copying cardArray's elements into newcardArray*/
+                System.arraycopy(cardArray, 0, newcardArray, 0, size);
+                /*Assigning newCard into the last element of newcardArray*/
+                newcardArray[newSize - 1] = newCard;
+                /*Assigning cardArray with the length of newSize*/
+                cardArray = new PrePaiCard[newSize];
+                /*Copying newcardArray's element into cardArray*/
+                System.arraycopy(newcardArray, 0, cardArray, 0, newSize);
+            }
+            /*Executing this operation if the last element of cardArray is null*/
+            else{
+                /*Implementing a for loop to iterate through cardArray*/
+                for(int i = 0; i < size; i++) {
+                    /*Executing this operation if the iteration meets an element that is null in cardArray*/
+                    if (cardArray[i] == null) {
+                        /*Assigning the element that is null to newCard*/
+                        cardArray[i] = newCard;
+                        break;
+                    }
+                }
+            }
+        }
+        /*Initializing an integer called "count" to count the number of prepaid card after adding newCard*/
+        int count = 0;
+        /*Implementing enhanced loop to count the number of element in cardArray*/
+        for (PrePaiCard card : cardArray){
+            /*Incrementing count if each element in cardArray is not null*/
+            if(card != null)
+                count++;
+        }
+        /*Returning the number of prepaid card in cardArray*/
+    }
+
+    /*Implementing a removeCard() method to return true if card is successfully removed and false otherwise*/
+    public boolean removeCard(int index) {
+        /*Executing this operation if cardArray is null and return false*/
+        if(cardArray == null){
+            return false;
+        }
+        /*Executing this operation if the index of the element out of bound*/
+        else if(index < 0 && index >= cardArray.length) {
+            return false;
+        }
+        /*Executing this operation if the element at that index is null*/
+        else if(cardArray[index] == null) {
+            return false;
+        }
+        /*Executing this operation if the index of the element is inside the domain and the element is not null*/
+        else {
+            cardArray[index] = null;
+            for (int i = index; i < cardArray.length - 1; i++){
+                if(cardArray[i] == null && cardArray[i+1] != null){
+                    cardArray[i] = cardArray[i+1];
+                    cardArray[i + 1] = null;
+                }
+            }
+            return true;
+        }
+    }
+
+    /*Implementing the updatedPrePaiCardExpiry() method to update the new expiry day and the new expiry month*/
+    public void updatedPrePaiCardExpiry(int index, int newExpiryDay, int newExpiryMonth){
+        if(cardArray != null && cardArray[index] != null){
+            /*Setting the expiry day of the PrePaid Card to a new one*/
+            cardArray[index].setexpiryDay(newExpiryDay);
+            /*Setting the expiry month of the PrePaid Card to a new one*/
+            cardArray[index].setexpiryMonth(newExpiryMonth);
+        }
+    }
+
+    /*Implementing addMealSales() method with 4 parameters to add the unit of each meal categories and return the new total sales*/
+    public int addMealSales(int juniorSales, int teenSales, int mediumSales, int bigSales, int familySales) {
+        /*Executing this operation if the sales is empty*/
+        if (sales == null) {
+           sales = new Sales(juniorSales, teenSales, mediumSales, bigSales, familySales);
+        }
+        /*Executing this operation if the sales is not empty*/
+        else {
+            sales.addSales(juniorSales, teenSales, mediumSales, bigSales, familySales);
+        }
+        return sales.SalesTotal();
+    }
+
+    /*Implementing equals() method to compare the amount of sales total of two PoS objects and the number of prepaid cards. Return true if they are equal and false otherwise*/
+    public boolean equals(PoS others){
+        return this.sales.SalesTotal() == others.sales.SalesTotal() && this.numPrepaicard() == others.numPrepaicard();
+    }
+
+    /*Implementing a toSting() to return the string the number of each meal sales categories and the details of each PoS*/
+    @Override
+    public String toString() {
+        String content = "";
+        /*Executing this operation if cardArray is null or empty*/
+        if(cardArray == null || numPrepaicard() == 0){
+            /*Displaying a message when there is no prepaid card in cardArray*/
+            content += "No PrePaiCards" +"\n";
+        }
+        /*Executing this operation if there is some elements in cardArray*/
+        else {
+            /*Implementing an enhanced loop to iterate through each element of cardArray*/
+            for(PrePaiCard card : cardArray){
+                /*Executing this operation if the element is not null*/
+                if(card != null){
+                    content = content + (card.toString() + "\n");
+                }
+            }
+        }
+        /*Returning the amount of sales and the unit of meal sales categories*/
+        return this.sales.toString() + "\n" + content;
+    }
+
+    /*Implementing breakdownSales() method to return a string of the breakdown of sales*/
+    public String breakdownSales(){
+        return this.sales.toString();
+    }
+}
+
+/*PoSDemo driver*/
+
+/*Algorithm: A code to simulate the Point Of Sale (PoS) for CostLessBites catering which handles orders either as on-demand
+sales or prepaid card for the Concordia community throughout the year. User will be able to see PoS contents, the amount of sales, the number of sales, the list of PoS that has the same sales and unit, remove, add, and update the prepaid card.*/
+
+/*Importing a scanner package*/
+import java.util.Scanner;
+
+public class PoSDemo {
+    public static void main(String[] args) {
+
+        /*Initializing an array called "posArray" with the size of 5 to store all the PoS*/
+        PoS[] posArray = new PoS[5];
+
+        /*Adding data such as the unit of sales categories and the information of prepaid cards into each element of posArray*/
+        posArray[0] = new PoS(new Sales(2, 1, 0, 4, 1), new PrePaiCard[]{new PrePaiCard("Vegetarian", "40825164", 25, 12), new PrePaiCard("Carnivore", "21703195", 3, 12)});
+        posArray[1] = new PoS(new Sales(2, 1, 0, 4, 1), new PrePaiCard[]{new PrePaiCard("Vigan", "40825164", 7, 12), new PrePaiCard("Vegetarian", "21586387", 24, 8)});
+        posArray[2] = new PoS(new Sales(0, 1, 5, 2, 0), new PrePaiCard[]{new PrePaiCard("Pescatarian", "95432806", 1, 6), new PrePaiCard("Halal", "42087913", 18, 12), new PrePaiCard("Kosher", "40735421", 5, 4)});
+        posArray[3] = new PoS(new Sales(3, 2, 4, 1, 2), new PrePaiCard[]{});
+        posArray[4] = new PoS(new Sales(3, 2, 4, 1, 2), new PrePaiCard[]{});
+
+        /*Initializing a boolean called "booLean" to use in the main do-while loop*/
+        boolean booLean = true;
+        /*Initializing a scanner object called "scanner" to store and read the user's input*/
+        Scanner scanner = new Scanner(System.in);
+
+        /*Initializing a string called "welcomeMsg" to store a welcome message*/
+        String welcomeMsg = """
+                +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                |   Welcome to Concordia CostLessBites Catering Sales Counter Application       |
+                +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++""";
+        /*Displaying welcomeMsg to the user when they first enter the system*/
+        System.out.println(welcomeMsg);
+
+        /*Implementing a do-while loop for the user to make a selection from the menu.
+        If the user selects anything between 0 and 9, operation will be executed according to their choice.
+        If the user selects anything else other than 0 to 9, the menu will be displayed and the user will be asked to select again*/
+        do {
+            /*Initializing a string called "menu" which lists all the possible actions that this system can do*/
+            String menu = """     
+                    | What would you like to do?                                                    |
+                    | 1 >> See the content of all PoSs                                              |
+                    | 2 >> See the content of one PoS                                               |
+                    | 3 >> List PoSs with the same $ amount of sales                                |
+                    | 4 >> List PoSs with same number of Sales categories                           |
+                    | 5 >> List PoSs with same $ amount of Sales and same number of prepaid cards   |
+                    | 6 >> Add a PrePaiCard to an existing PoS                                      |
+                    | 7 >> Remove an existing prepaid card from a PoS                               |
+                    | 8 >> Update the expiry date of an existing Prepaid card                       |
+                    | 9 >> Add Sales to a PoS                                                       |
+                    | 0 >> To quit                                                                  |
+                    +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                                        
+                    Please enter your choice and press <Enter>:""";
+            /*Displaying the menu to the user*/
+            System.out.print(menu);
+            /*Declaring an integer scanner called "choice" to store and read user's input*/
+            int choice = scanner.nextInt();
+            switch (choice) {
+                case 1:
+                    /*case 1: If the user selects 1, the operation will display all the sales categories (the unit of sales and the prices)
+                    and the information of prepaid cards (the card type, the id card, the expiry day, and the expiry month) of all the PoS*/
+
+                    /*Calling "handleCase1" to operate this choice*/
+                    handleCase1(posArray);
+                    break;
+                case 2:
+                    /*case 2: If the user selects 2, the user will be asked to enter a specific valid PoS that they want to see the content of*/
+
+                    /*Calling "handleCase2" to operate this choice*/
+                    handleCase2(posArray, scanner);
+                    break;
+                case 3:
+                    /*case 3: If the user selects 3, the PoSs that have the same total amount of sales and the value of them will be shown*/
+
+                    /*Calling "handleCase3" to operate this choice*/
+                    handleCase3(posArray);
+                    break;
+                case 4:
+                    /*case 4: If the user selects 4, the PoSs that have the same Sales Categories will be displayed*/
+
+                    /*Calling "handleCase4" to operate this choice*/
+                    handleCase4(posArray);
+                    break;
+                case 5:
+                    /*case 5: If the user selects 5, the PoSs that have the same amount fo sales and same number of PrePaid Card will be displayed*/
+
+                    /*Calling "handleCase5" to operate this choice*/
+                    handleCase5(posArray);
+                    break;
+                case 6:
+                    /*case 6: If the user selects 6, the user will be asked which PoS they want to add a new PrePaid card to and also all the information in the card*/
+
+                    /*Calling "handleCase6" to operate this choice*/
+                    handleCase6(posArray, scanner);
+                    break;
+                case 7:
+                    /*case 7: If the user select 7, the user will be asked which PoS they want to remove prepaid card from and the index of the prepaid card they want to remove*/
+
+                    /*Calling "handleCase7" to operate this choice*/
+                    handleCase7(posArray, scanner);
+                    break;
+                case 8:
+                    /*case 8: If the user selects 8, the user will be asked to answer which prepaid card from which PoS they want to update the expiration date*/
+
+                    /*Calling "handleCase8" to operate this choice*/
+                    handleCase8(posArray, scanner);
+                    break;
+                case 9:
+                    /*case 9: If the user selects 9, the user will be asked to select a valid PoS to add sales to and the number of each sales categories sales they want to add*/
+
+                    /*Calling "handleCase9" to operate this choice*/
+                    handleCase9(posArray, scanner);
+                    break;
+                case 0:
+                    /*case 0: If the user selects 0, a closing message will be displayed and the operation will be stopped*/
+
+                    /*Calling "handleCase0" to operate this choice*/
+                    handleCase0(posArray, scanner);
+                    booLean = false;
+                    break;
+                default:
+                    /*default case: If user selects anything that is not between 0 and 9, a message will be shown and will be asked to try again*/
+                    handleCaseDefault(posArray, scanner);
+            }
+        } while (booLean);
+
+        /*Closing the scanner package*/
+        scanner.close();
+    }
+
+    /*Implementing a static method to handle case 1*/
+    public static void handleCase1(PoS[] posArray) {
+        /*Initializing a string called "content" and displaying it*/
+        String content = """
+                Content of each PoS:
+                ---------------------""";
+        System.out.println(content);
+        /*Displaying all the contents by implementing a for-loop to iterate through posArray and using the toString() method from the PoS class*/
+        for (int i = 0; i < 5; i++) {
+            System.out.println("PoS #" + i + ": \n" + posArray[i].toString());
+        }
+    }
+
+    /*Implementing a static method to handle case 2*/
+    public static void handleCase2(PoS[] posArray, Scanner scanner) {
+        /*Initializing a boolean called "try1" for the do-while loop*/
+        boolean try1 = true;
+        /*Implementing a do-while loop. If the users enter a valid PoS, the content of that PoS will be displayed.
+        If the user enters an invalid PoS, the user will be asked to enter again.*/
+        do {
+            if (try1) {
+                /*Prompting the user for a valid PoS number*/
+                System.out.print("Which PoS you want to see the content of? (Enter number 0 to 4): ");
+            }
+            /*Declaring an integer scanner to store and read the user's input*/
+            int choice1 = scanner.nextInt();
+
+            /*Executing this operation if the PoS number that the user enters is valid*/
+            if (choice1 >= 0 && choice1 <= 4) {
+                String eachContent = "The content of PoS #" + choice1;
+                /*Displaying the content of the PoS that the user wants to see*/
+                System.out.println(eachContent + "\n" + posArray[choice1]);
+                break;
+            }
+            /*Executing this operation if the PoS number that the user enters is invalid*/
+            else {
+                /*Displaying a message to the user and ask them to try again*/
+                System.out.print("Sorry but there is no PoS number " + choice1 + "\n --> Try again: (Enter number 0 to 4): ");
+                /*Assigning try1 to false so the operation if and else will be running again*/
+                try1 = false;
+            }
+        } while (true);
+    }
+
+    /*Implementing a static method to handle case 3*/
+    public static void handleCase3(PoS[] posArray) {
+        /*Displaying the list of PoSs with the same total $ sales*/
+        System.out.println("List of PoSs with the same total $ Sales: \n");
+        /*Implementing two for-loop to iterate through the posArray to compare the sales of two PoS*/
+        for (int a = 0; a < 5; a++) {
+            for (int b = a + 1; b < 5; b++) {
+                /*Executing this operation by using equalsSalesTotal() and SalesTotal() methods from class Sales*/
+                if (posArray[a].equalsSalesTotal(posArray[b])) {
+                    System.out.println("\tPoSs " + a + " and " + b + " both have " + posArray[a].getSales().SalesTotal());
+                }
+            }
+        }
+        System.out.println();
+    }
+
+    /*Implementing a static method to handle case 4*/
+    public static void handleCase4(PoS[] posArray) {
+        /*Displaying the list of PoSs with the same sale categories*/
+        System.out.println("List of PoSs with same Sales Categories: \n");
+        /*Implementing two for-loop to iterate through posArray to compare two sales categories of two PoS*/
+        for (int c = 0; c < 5; c++) {
+            for (int d = c + 1; d < 5; d++) {
+                /*Executing this operation by using equals() and toString() methods from the PoS class*/
+                if (posArray[c].equals(posArray[d])) {
+                    System.out.println("\tPoSs " + c + " and " + d + " both have " + posArray[c].breakdownSales());
+                }
+            }
+        }
+        System.out.println();
+    }
+
+    /*Implementing a static method to handle case 5*/
+    public static void handleCase5(PoS[] posArray) {
+        /*Displaying the list of all PoSs pairs with the same amount of sales and same number of Prepaid card */
+        System.out.println("List of PoSs with same $ amount of sales and same number of PrePaiCards: \n");
+        /*Implementing two for-loop to iterate through posArray to compare data of two PoS*/
+        for (int e = 0; e < 5; e++) {
+            for (int f = e + 1; f < 5; f++) {
+                /*Executing this operation by using equals() method from the PoS class*/
+                if (posArray[e].equals(posArray[f])) {
+                    System.out.println("\tPoSs " + e + " and " + f);
+                }
+            }
+        }
+        System.out.println();
+    }
+
+    /*Implementing a static method to handle case 6*/
+    public static void handleCase6(PoS[] posArray, Scanner scanner) {
+        /*Initializing a boolean called "try3" for the do-while loop*/
+        boolean try3 = true;
+        do {
+            /*Prompting the user to enter a valid PoS they want to add the prepaid card to*/
+            if (try3) {
+                System.out.print("Which PoS do you want to add a PrePaiCard to? (Enter number 0 to 4): ");
+            }
+            /*Declaring an integer scanner to store and read the user's input*/
+            int choice2 = scanner.nextInt();
+
+            /*Executing this operation if the user enter a valid PoS*/
+            if (choice2 >= 0 && choice2 <= 4) {
+                /*Consuming a new line of character*/
+                scanner.nextLine();
+                /*Prompting the user to enter the Type of PrePaid Card*/
+                System.out.print("Please enter the following information so that we may complete the PrePaiCard-" + "\n" +
+                        "--> Type of PrePaiCard (Carnivore, Halal, Kosher, Pescatarian, Vegetarian, Vigan): ");
+                /*Declaring a string scanner called "cardType" to store the type of the prepaid card the user enters*/
+                String cardType = scanner.next();
+                /*Consuming a new line of character*/
+                scanner.nextLine();
+                /*Prompting the user to enter the ID of PrePaid card*/
+                System.out.print("--> Id of the prepaid card owner: ");
+                /*Declaring a scanner string called "idCard" to store the id of the prepaid card the user enters*/
+                String idCard = scanner.nextLine();
+                /*Prompting the user to enter the expiry day and the expiry month*/
+                System.out.print("--> Expiry day number and month (separate by a space): ");
+                /*Initializing two scanner integer to store and read the expiry day and expiry month, respectively*/
+                int day = scanner.nextInt();
+                int month = scanner.nextInt();
+
+                /*Initializing a new PrePaiCard called "newCard" with the 4 parameters (the card type, the id card, the expiry day, and the expiry month)*/
+                PrePaiCard newCard = new PrePaiCard(cardType, idCard, day, month);
+                /*Adding newCard into the PoS of the user's choice by implementing the addnewCard() method from the PoS class*/
+                posArray[choice2].addNewCard(newCard);
+
+                /*Displaying a confirmation message to the user when the new card is successfully added into the PoS*/
+                System.out.println("Now you have 1 PrePaiCard" + "\n");
+                break;
+            }
+            /*Executing this operation if the user enters an invalid PoS*/
+            else {
+                /*Displaying a message to the user and ask them to try again*/
+                System.out.print("Sorry but there is no PoS number " + choice2 + "\n --> Try again 0 to 4: ");
+                /*Assigning try3 to false so repeat the operation if and else will be operating again*/
+                try3 = false;
+            }
+        } while(true);
+    }
+
+    /*Implementing a static method to handle case 7*/
+    public static void handleCase7(PoS[] posArray, Scanner scanner){
+        /*Initialing a boolean called "try4" for do-while loop*/
+        boolean try4 = true;
+        do {
+            /*Prompting the user to enter a valid PoS*/
+            if (try4) {
+                System.out.print("Which PoS you want to remove an PrePaiCard from? (Enter number 0 to 4): ");
+            }
+            /*Initializing an integer scanner to store and read the user's input*/
+            int choice3 = scanner.nextInt();
+            /*Executing this operation if the user enters a valid PoS*/
+            if (choice3 >= 0 && choice3 <= 4) {
+                /*Executing this operation if the posArray's cards are not null or empty*/
+                if (posArray[choice3] != null && posArray[choice3].getCardArray() != null) {
+                    int lastIndex = posArray[choice3].numPrepaicard() - 1;
+                    /*Prompting the user to enter the index of the prepaid card they want to remove*/
+                    /*Executing this operation if the number of card is 1*/
+                    if (posArray[choice3].numPrepaicard() == 0) {
+                        System.out.println("There is no PrePaid Card to remove." + "\n");
+                    }
+                    /*Executing this operation if the number of card is more than 1*/
+                    else {
+                        System.out.print("(Enter 0 to " + lastIndex + "): ");
+                        /*Declaring an integer scanner to store and read the user's input*/
+                        int indexToRemove = scanner.nextInt();
+
+                        /*Executing this operation if indexToRemove is valid*/
+                        if (indexToRemove >= 0 && indexToRemove <= lastIndex) {
+                            /*Initializing a boolean called "removed" to implement the removecard() method from the PoS class to remove the card*/
+                            boolean removed = posArray[choice3].removeCard(indexToRemove);
+                            /*Executing this operation and displaying a message if removed is true*/
+                            System.out.println("PrePaiCard was removed successfully" + "\n");
+                        }
+                        /*Executing this operation if indexToRemove is invalid*/
+                        else {
+                            System.out.println("Failed to remove a PrePaiCard" + "\n");
+                        }
+                    }
+                    break;
+                }
+                /*Executing this operation if there is no PrePaiCards*/
+                else {
+                    System.out.println("Sorry that PoS has no PrePaiCards" + "\n");
+                    break;
+                }
+            }
+            /*Executing this operation if the PoS's cards are null and displaying a message*/
+            /*Executing this operation if the PoS the user enters is invalid*/
+            else{
+                System.out.print("Sorry but there is no PoS number " + choice3 + "\n--> Try again 0 to 4: ");
+                /*Assigning try4 to false so the loop will be operating again*/
+                try4 = false;
+            }
+        } while (true);
+    }
+
+    /*Implementing a static method to handle case 8*/
+    public static void handleCase8(PoS[] posArray, Scanner scanner){
+        /*Initializing a boolean called "try5" for do-while loop*/
+        boolean try5 = true;
+        do {
+            /*Prompting the user to input the which PoS they want to update the prepaid card from*/
+            if (try5) {
+                System.out.print("Which PoS do you want to update an PrePaiCard from? (Enter number 0 to 4): ");
+            }
+            /*Declaring an integer scanner to store and read the user's input*/
+            int choice4 = scanner.nextInt();
+
+            /*Executing this operation if choice4 is valid*/
+            if (choice4 >= 0 && choice4 <= 4) {
+
+                /*Executing this operation if the PoS's cards are not null*/
+                if (posArray[choice4] != null && posArray[choice4].getCardArray() != null) {
+                    /*Initializing an integer called "last" to store the last index of the array of cards*/
+                    int last = posArray[choice4].numPrepaicard() - 1;
+                    if (posArray[choice4].numPrepaicard() == 0) {
+                        /*Prompting the user to enter the index of the prepaid card they want to update*/
+                        System.out.print("Which PrePaiCard do you want to update? (Enter number 0 to 0): ");
+                    }
+                    else {
+                        /*Prompting the user to enter the index of the prepaid card they want to update*/
+                        System.out.print("Which PrePaiCard do you want to update? (Enter number 0 to " + last + "): ");
+                    }
+                    /*Declaring an integer scanner to store and read the user's input*/
+                    int indexToUpdate = scanner.nextInt();
+
+                    /*Executing this operation if the indexToUpdate is in the condition*/
+                    if (indexToUpdate == 0 || (indexToUpdate >= 0 && indexToUpdate <= last)) {
+                        /*Prompting the user to enter new expiry date and month, respectively*/
+                        System.out.print("--> Enter new expiry date day number and month (separate by space): ");
+                        /*Declaring two scanner integers called "newDate" and "newMonth" to store new expiry date and expiry month, respectively*/
+                        int newDate = scanner.nextInt();
+                        int newMonth = scanner.nextInt();
+                        /*Implementing the updatedPrePaiCardExpiry from the PoS class to update the expiration dates*/
+                        posArray[choice4].updatedPrePaiCardExpiry(indexToUpdate, newDate, newMonth);
+                        /*Displaying a confirmation message after updating the expiration date*/
+                        System.out.println("Expiry Date updated." + "\n");
+                        break;
+                    }
+                    /*Executing this operation if the indexToUpdate is not between 0 and last*/
+                    else {
+                        System.out.println("The number of PrePaiCard is invalid." + "\n");
+                        break;
+                    }
+                }
+                /*Executing this operation if there is no prepaid card in the posArray*/
+                else {
+                    System.out.println("There is no PrePaiCard to update in this PoS." + "\n");
+                    break;
+                }
+            }
+            /*Executing this operation if the PoS the user enters is invalid and asking the user to try again*/
+            else {
+                System.out.print("Sorry but there is no PoS number " + choice4 + "\n --> Try again: (Enter number 0 to 4): ");
+                /*Assigning try5 to false so the loop will be operating again*/
+                try5 = false;
+            }
+        } while (true);
+    }
+
+    /*Implementing a static method to handle case 9*/
+    public static void handleCase9(PoS[] posArray, Scanner scanner){
+        /*Initializing a boolean called "anotherTry" for the do-while loop*/
+        boolean anotherTry = true;
+        do {
+            /*Prompting the user to enter a valid PoS index*/
+            if (anotherTry) {
+                System.out.print("Which PoS do you want to add Sales to? (Enter 0 to 4): ");
+            }
+            /*Declaring an integer scanner to store and read the user's input*/
+            int choice5 = scanner.nextInt();
+            /*Executing the operation if the choice5 is in the condition*/
+            if (choice5 >= 0 && choice5 <= 4) {
+                /*Prompting the user to enter the unit of each sales categories*/
+                System.out.print("How many junior, teen, medium, big, and family meal menu do you want to add? (Enter 5 numbers separated by a space): ");
+                /*Declaring 5 scanner integers to store and read the user's input for the unit of junior's sales, teen's sales, medium's sales, big's sales, and family's sales, respectively*/
+                int n1 = scanner.nextInt();
+                int n2 = scanner.nextInt();
+                int n3 = scanner.nextInt();
+                int n4 = scanner.nextInt();
+                int n5 = scanner.nextInt();
+                /*Initializing a double called "newSale" to add the new unit of each sales categories and calculate into the PoS of the user's choice by implementing the addMealSales() method from the PoS class*/
+                double newSale = posArray[choice5].addMealSales(n1, n2, n3, n4, n5);
+                /*Displaying the new amount of total sales to the user*/
+                System.out.println("You now have $" + newSale + "\n");
+                break;
+            }
+            /*Executing this operation if the PoS the user enters is invalid and asking the user to try again*/
+            else if (choice5 < 0 || choice5 > 4) {
+                System.out.print("Sorry but there is no PoS number " + choice5 + "\n" + "--> Try again (Enter 0 to 4): ");
+                /*Assigning anotherTry to false so the loop will be operating again*/
+                anotherTry = false;
+            }
+        } while (true);
+    }
+
+    /*Implementing a static method to handle case 0*/
+    public static void handleCase0(PoS[] posArray, Scanner scanner){
+        /*Displaying a closing message to the user*/
+        String closingMsg = "Thank you for using Concordia CostLessBites Catering Sales Counter Application!";
+        System.out.println(closingMsg);
+    }
+
+    /*Implementing a static method to handle default case*/
+    public static void handleCaseDefault(PoS[] posArray, Scanner scanner){
+        /*Displaying a try again message*/
+        System.out.println("Sorry that is not a valid choice. Try again. \n");
+    }
+}
+

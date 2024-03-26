@@ -1,0 +1,112 @@
+//Algorithm: Skiing Ranker
+//The purpose of this program is to help sorting the top three winners of Ski Mont-Halloween competitions.
+
+//Importing a scanner package
+import java.util.Scanner;
+
+public class A3_Q2 {
+
+    public static void main(String[] args) {
+
+        //Displaying a welcome message to the user
+        System.out.println("Welcome to Mont-Halloween Skiing Contest Ranker.");
+        //Displaying a confirmation message for the user to enter the skier's name and time
+        System.out.println("Whenever a skier makes it to the finish line, enter their name and skiing time.");
+
+        //Initializing a scanner object
+        Scanner scanner = new Scanner(System.in);
+
+        //Declaring three arrays for names, times, and sortedTime with the size of 20, 20, and 3, respectively
+        String[] names = new String[20];
+        double[] times = new double[20];
+        double[] sortedTime = new double[3];
+
+        //Declaring the index of the arrays
+        int i;
+
+        //Assigning the sortedTimes array with positive infinity
+        for(i = 0; i < 3; ++i) {
+            sortedTime[i] = Double.POSITIVE_INFINITY;
+        }
+
+        //Assigning the index of the array to 0
+        i = 0;
+
+        while(i < 20) {
+
+            //Prompting the user for the skier's name
+            System.out.print("Please input the skier's name: ");
+            //Declaring a string to store and read the user's input
+            String name = scanner.nextLine();
+
+            //Prompting the user for the skier's time
+            System.out.print("Please input the skier's time: ");
+            //Declaring a double to store and read the user's input
+            double time = scanner.nextDouble();
+
+            //Consuming the newline characters
+            scanner.nextLine();
+
+            //Assigning the array with the name and the time at index i
+            names[i] = name;
+            times[i] = time;
+
+            //Sorting the time in sortedTime array from the slowest to the fastest
+            if (times[i] < sortedTime[0]) {
+                double temp = sortedTime[0];
+                sortedTime[0] = times[i];
+                double temp1 = sortedTime[1];
+                sortedTime[1] = temp;
+                sortedTime[2] = temp1;
+            } else if (times[i] > sortedTime[0] && times[i] < sortedTime[1]) {
+                double temp = sortedTime[1];
+                sortedTime[1] = times[i];
+                sortedTime[2] = temp;
+            } else if (times[i] > sortedTime[1] && times[i] < sortedTime[2]) {
+                sortedTime[2] = times[i];
+            }
+
+            //Displaying the podium position from the lowest to the third lowest with their names and their times
+            for(int k = 0; k < 3; ++k) {
+                if (sortedTime[k] != Double.POSITIVE_INFINITY) {
+                    for(int j = 0; j < 20; ++j) {
+                        String position = "";
+                        if (k == 0) {
+                            position = "First";
+                        } else if (k == 1) {
+                            position = "Second";
+                        } else if (k == 2) {
+                            position = "third";
+                        }
+                        if (sortedTime[k] == times[j]) {
+                            System.out.println(position + " podium goes to " + names[j] + " who made it in " + times[j] + " second(s)");
+                        }
+                    }
+                }
+            }
+
+            //Incrementing the index for the loop to continue
+            ++i;
+
+            //Prompting the user if they want to add another skier to the competition
+            System.out.print("Do you want to add another skier? y/yes: ");
+            //Declaring a string to store and read the user's input
+            String answer = scanner.next();
+
+            //Consuming the newline characters
+            scanner.nextLine();
+
+            //Exiting the loop if the user answers anything other than yes or y
+            if (!answer.equalsIgnoreCase("yes") && !answer.equalsIgnoreCase("y")) {
+                break;
+            }
+        }
+
+        //Displaying a closing message the user
+        System.out.println("Goodbye!");
+
+        //Closing the scanner object
+        scanner.close();
+    }
+}
+

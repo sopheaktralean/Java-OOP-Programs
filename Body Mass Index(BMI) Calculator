@@ -1,0 +1,67 @@
+//Algorithm: BMI (Body Mass Index) Calculator
+import java.util.Scanner;
+
+public class BMICalculator {
+    public static void main(String[] args){
+
+        Scanner information = new Scanner(System.in);
+
+        //Displaying the welcome message
+        System.out.println("______****______****______****______****______****_____");
+        System.out.println("Welcome to BMI Calculator");
+        System.out.println("______****______****______****______****______****_____");
+
+        //Prompting user's for input
+        System.out.print("Enter weight (in kilograms): ");
+        double weight = information.nextDouble();
+
+        System.out.print("Enter height (in meters): ");
+        double height = information.nextDouble();
+
+        //Implementing the algorithms
+        double BMI = weight/(height*height);
+
+        String result = "Category: ";
+        String category = "";
+
+        //Displaying the BMI result
+        if (BMI < 18.5)
+            category = "Underweight";
+        else if ( BMI >= 18.5 && BMI <= 24.9) {
+           category = "Normal weight";
+        } else if (BMI >= 25 && BMI <= 29.9) {
+           category = "Overweight";
+        } else if (BMI >= 30) {
+           category = "Obesity";
+        }
+        System.out.printf("BMI: %.2f", BMI);
+        System.out.println("\n"+ result + category);
+
+        //Prompting user's for input
+        System.out.println("do you some tips according to your BMI?");
+        String answer = information.next();
+
+        //Displaying the information
+        if (answer.equals("yes") || answer.equalsIgnoreCase("y")){
+            if(category.equals("Underweight")){
+                System.out.println("Please eat well and do more excises.");
+            }
+            else if (category.equals("Normal weight")){
+                System.out.println("Congratulations, you are doing fairly well. Keep on going.");
+            }
+            else if (category.equals("Overweight")){
+                System.out.println("Please watch out what you eat and do more excises!");
+            }
+            else if(category.equals("Obesity")){
+                System.out.println("Please contact our experts for professional help.");
+            }
+        }
+        else {
+            System.out.println("Nice to meet you too. Bye!");
+        }
+
+        //Closing the scanner
+        information.close();
+    }
+
+}

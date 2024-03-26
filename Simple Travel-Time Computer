@@ -1,0 +1,34 @@
+/*Algorithm 2: Simple Travel-Time Computer*/
+import java.util.Scanner;
+
+public class SimpleTravelTimeComputer {
+    public static void main(String[] args){
+
+        Scanner scan = new Scanner(System.in);
+
+            //displaying the welcome message
+            System.out.println("""
+                    Project-S Simple Travel-Time Computer:
+                    ++++++++++++++++++++++++++++++++++++++
+                    """);
+
+            //prompting the user for distance
+            System.out.println("Please enter the distance (in km) between the Earth and the extraterrestrial body: ");
+            double givenDistance = scan.nextDouble();
+
+            //implementing the algorithm
+            double distanceInHours = givenDistance / (28000 * 1.61);
+            int distanceInDays = (int)Math.round(distanceInHours / 24);
+
+            //displaying the confirmation message
+            String message = String.format("""
+                    Project-S spaceship, constantly travelling at 28000mi/h, will take approximately
+                    %d 'Earth-based days' to get to its foreknown extraterrestrial destination.
+                    """, distanceInDays);
+            System.out.println(message);
+
+            //displaying the closing message
+            System.out.println("Thank you for your contribution to Project-S.");
+        scan.close();
+    }
+}
